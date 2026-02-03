@@ -13,7 +13,7 @@ public class DriverFactory {
 
     public static WebDriver createDriver(String browser) {
         WebDriver driver;
-        
+
         switch (browser.toLowerCase()) {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
@@ -28,6 +28,16 @@ public class DriverFactory {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--remote-allow-origins=*");
+
+                // Headless mode configuration
+                if (Boolean.getBoolean("headless")) {
+                    options.addArguments("--headless=new");
+                    options.addArguments("--disable-gpu");
+                    options.addArguments("--window-size=1920,1080");
+                    options.addArguments("--no-sandbox");
+                    options.addArguments("--disable-dev-shm-usage");
+                }
+
                 driver = new ChromeDriver(options);
                 break;
         }

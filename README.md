@@ -24,3 +24,6 @@ mvn clean test
 This project includes a `Jenkinsfile` for CI/CD integration.
 - Ensure the "GitHub" plugin is installed.
 - Configure credentials if using private repo.
+- **Headless Mode**: The project supports headless execution (recommended for Jenkins agents without UI).
+  - Add `-Dheadless=true` to the Maven options.
+  - Example: `mvn clean test -Dheadless=true`
